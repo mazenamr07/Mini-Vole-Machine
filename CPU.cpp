@@ -27,7 +27,11 @@ std::string ALU::decToHex(int dec) {
         dec /= 16;
     }
 
-    return result.empty() ? "0" : result;
+    while (result.size() < 2) {
+        result.insert(0, 1, '0');
+    }
+
+    return result;
 }
 
 //    Binary
@@ -50,7 +54,11 @@ std::string ALU::decToBin(int dec) {
         dec /= 2;
     }
 
-    return result.empty() ? "0" : result;
+    while (result.size() < 8) {
+        result.insert(0, 1, '0');
+    }
+
+    return result;
 }
 
 bool ALU::isValidInstruction(std::string instruction) {
