@@ -1,0 +1,54 @@
+# Ignore build directory (CMake build artifacts)
+cmake-build-*
+
+# Ignore CMake-generated files
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Ignore CLion-specific project files
+.idea/
+.idea_modules/
+
+# Ignore logs and temporary files
+*.log
+*.temp
+*.tmp
+
+# Ignore compiled object files and executables
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.exe
+*.dll
+*.dSYM/
+
+# Ignore any backup or temporary files created by editors
+*~
+*.swp
+*.swo
+*.bak
+
+# Ignore libraries
+lib/
+
+# Ignore test result files
+*.gcda
+*.gcno
+*.gcov
+
+# Ignore dist directory (for release builds)
+dist/
+
+# Ignore desktop.ini files (Windows system files)
+desktop.ini
+
+# Ignore the course directory
+course/
