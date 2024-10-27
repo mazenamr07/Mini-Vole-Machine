@@ -1,8 +1,12 @@
 #include "CPU.h"
 
 //    Hexadecimal
-double ALU::hexToDec(const std::string &hex) {
-    double result = 0;
+int ALU::hexToDec(const std::string &hex, bool isTwosComplement) {
+    if (isTwosComplement) {
+        return 0;
+    }
+
+    int result = 0;
 
     for (char i: hex) {
         if (i >= '0' && i <= '9') {
@@ -17,7 +21,11 @@ double ALU::hexToDec(const std::string &hex) {
     return result;
 }
 
-std::string ALU::decToHex(int dec) {
+std::string ALU::decToHex(int dec, bool isTwosComplement) {
+    if (isTwosComplement) {
+        return {};
+    }
+
     std::string hexDigits = "0123456789ABCDEF";
     std::string result;
 
@@ -26,7 +34,6 @@ std::string ALU::decToHex(int dec) {
         result.insert(0, 1, hexDigits[remainder]);
         dec /= 16;
     }
-
     while (result.size() < 2) {
         result.insert(0, 1, '0');
     }
@@ -35,32 +42,43 @@ std::string ALU::decToHex(int dec) {
 }
 
 //    Binary
-double ALU::binToDec(const std::string &bin) {
-    double result;
+int ALU::binToDec(const std::string &bin, bool isTwosComplement, bool isFloatNotation) {
+    if (!isTwosComplement && !isFloatNotation) {
+        int result = 0;
 
-    for (char i: bin) {
-        result = result * 2 + (i - '0');
+        for (char digit: bin) {
+            result = result * 2 + (digit - '0');
+        }
+
+        return result;
+    } else if (isTwosComplement) {
+        return 0;
     }
-    return result;
+    return 0;
 }
 
-std::string ALU::decToBin(int dec) {
-    std::string binDigits = "01";
-    std::string result;
+std::string ALU::decToBin(int dec, bool isTwosComplement, bool isFloatNotation) {
+    if (!isTwosComplement && !isFloatNotation) {
+        std::string binDigits = "01";
+        std::string result;
 
-    while (dec > 0) {
-        int remainder = dec % 2;
-        result.insert(0, 1, binDigits[remainder]);
-        dec /= 2;
+        while (dec > 0) {
+            int remainder = dec % 2;
+            result.insert(0, 1, binDigits[remainder]);
+            dec /= 2;
+        }
+        while (result.size() < 8) {
+            result.insert(0, 1, '0');
+        }
+
+        return result;
+    } else if (isTwosComplement) {
+        return {};
     }
-
-    while (result.size() < 8) {
-        result.insert(0, 1, '0');
-    }
-
-    return result;
+    return {};
 }
 
+//    Validation
 bool ALU::isValidInstruction(std::string instruction) {
     for (const auto &hex: instruction) {
         if (hex < '0' || hex > 'F') {
@@ -75,7 +93,7 @@ bool ALU::isValidInstruction(std::string instruction) {
     return true;
 }
 
+
+
 //    Arithmetic
-int ALU::add(int number_1, int number_2) {
-    return 0;
-}
+

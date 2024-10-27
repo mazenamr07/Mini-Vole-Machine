@@ -2,25 +2,27 @@
 #define TASK_3___VOLE_MACHINE_CPU_H
 
 #include <iostream>
+#include <bitset>
 
 class Register;
 
 class ALU {
 public:
 //    Hexadecimal
-    double hexToDec(const std::string &hex);
+    int hexToDec(const std::string &hex, bool isTwosComplement);
 
-    std::string decToHex(int dec);
+    std::string decToHex(int dec, bool isTwosComplement);
 
 //    Binary
-    double binToDec(const std::string &bin);
+    int binToDec(const std::string &bin, bool isTwosComplement, bool isFloatNotation);
 
-    std::string decToBin(int dec);
+    std::string decToBin(int dec, bool isTwosComplement, bool isFloatNotation);
 
+//    Validation
     bool isValidInstruction(std::string instruction);
 
 //    Arithmetic
-    int add(int number_1, int number_2);
+    std::string binaryAdd(std::string bin_1, std::string bin_2, bool isTwosComplement);
 };
 
 class CU {
