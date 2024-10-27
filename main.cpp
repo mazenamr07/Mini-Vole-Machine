@@ -4,8 +4,8 @@
 #include <vector>
 #include <cmath>
 
-#include "course/complexNumber.h"
-#include "course/stack.h"
+//#include "course/complexNumber.h"
+//#include "course/stack.h"
 #include "CPU.h"
 
 using namespace std;
