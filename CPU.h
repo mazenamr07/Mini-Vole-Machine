@@ -9,9 +9,13 @@ class ALU {
 public:
 //    Hexadecimal
     double hexToDec(const std::string &hex);
-    std::string decToHex(int dec);
-//    Binary
 
+    std::string decToHex(int dec);
+
+//    Binary
+    double binToDec(const std::string &bin);
+
+    std::string decToBin(int dec);
 
     bool isValidInstruction(std::string instruction);
 
