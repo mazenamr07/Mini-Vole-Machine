@@ -15,6 +15,19 @@ double ALU::hexToDec(const std::string &hex) {
 
     return result;
 }
+double ALU::hexToDec(const char &hex) {
+    double result = 0;
+
+        if (hex >= '0' && hex <= '9') {
+            result = result * 16 + (hex - '0');
+        } else if (hex >= 'A' && hex <= 'F') {
+            result = result * 16 + (hex - 'A' + 10);
+        } else if (hex >= 'a' && hex <= 'f') {
+            result = result * 16 + (hex - 'a' + 10);
+        }
+
+    return result;
+}
 
 std::string ALU::decToHex(int dec) {
     std::string hexDigits = "0123456789ABCDEF";

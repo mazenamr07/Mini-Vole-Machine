@@ -57,7 +57,7 @@ private:
    CU C_CU;
    Memory mem;
    Register r;
-   int memoDecIndex, regDecIndex;
+   int memoDecIndex, regDecIndex, regindex1, regindex2;
    
 
 ////    Methods
@@ -77,25 +77,31 @@ private:
        dataIndex += instructionRegister[2];
        dataIndex += instructionRegister[3];
 
-       // using ALU to turn hex "5C" to dec for index
-        regDecIndex = C_ALU.hexToDec(registerIndex);
-        memoDecIndex = C_ALU.hexToDec(dataIndex);
+       
    }
 
    void execute() {
         if (operation == "1") {
+            regDecIndex = C_ALU.hexToDec(registerIndex);
+            memoDecIndex = C_ALU.hexToDec(dataIndex);
             C_CU.load_content(regDecIndex, memoDecIndex, mem, r);
         } 
         else if (operation == "2") {
+            regDecIndex = C_ALU.hexToDec(registerIndex);
             C_CU.load(regDecIndex, dataIndex, r);
         }
 
         else if (operation == "3") {
+            regDecIndex = C_ALU.hexToDec(registerIndex);
+            memoDecIndex = C_ALU.hexToDec(dataIndex);
             C_CU.store(regDecIndex, memoDecIndex, r, mem);
         }
-//        } else if (operation == "4") {
-//
-//        } else if (operation == "5") {
+        else if (operation == "4") {
+            regindex1 = C_ALU.hexToDec(instructionRegister[2]);
+            regindex2 = C_ALU.hexToDec(instructionRegister[3]);
+            C_CU.move(regindex1, regindex2, r);
+        } 
+//else if (operation == "5") {
 //
 //        } else if (operation == "6") {
 //

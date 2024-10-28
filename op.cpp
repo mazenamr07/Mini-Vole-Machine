@@ -24,4 +24,9 @@ class CU{
             string content = reg.get_cell(registerindex);
             memo.set_cell(content, memoryaddress);
         }
+        void move(int registerindex1, int registerindex2, Register &reg){
+            string content = reg.get_cell(registerindex1);
+            reg.set_cell(content, registerindex2);
+        }
+       
 };

@@ -12,7 +12,8 @@ public:
     std::string decToHex(int dec);
 //    Binary
 
-
+    double hexToDec(const char &hex);
+    std::string decToHex(int dec);
     bool isValidInstruction(std::string instruction);
 
 //    Arithmetic
@@ -23,8 +24,8 @@ public:
 
 // };
 
-class CPU {
+// class CPU {
 
-};
+// };
 
 #endif //TASK_3___VOLE_MACHINE_CPU_H
