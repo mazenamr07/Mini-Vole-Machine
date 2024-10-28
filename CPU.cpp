@@ -1,7 +1,7 @@
 #include "CPU.h"
 
-//    Hexadecimal
-int ALU::hexToDec(const std::string &hex) {
+//    Hexadecimal Conversion
+int ALU::hexToUnsignedDec(const std::string &hex) {
     int result = 0;
 
     for (char digit: hex) {
@@ -46,7 +46,29 @@ std::bitset<8> ALU::hexToBin(const std::string &hex) {
     return std::bitset<8>(sResult);
 }
 
-//    Binary
+std::string ALU::binToHex(std::bitset<8> bin) {
+    std::string result;
+    std::bitset<4> left, right;
+
+    for (int i = 0; i < 4; ++i) {
+        left[i] = bin[i + 4];
+        right[i] = bin[i];
+    }
+
+    int array[2];
+    array[0] = left.to_ulong();
+    array[1] = right.to_ulong();
+
+    for (int i: array) {
+        if (i >= 0 && i <= 9) {
+            result += char(i + '0');
+        } else if (i >= 10 && i <= 15) {
+            result += char(i + 'A' - 10);
+        }
+    }
+
+    return result;
+}
 
 
 //    Validation
@@ -63,7 +85,6 @@ bool ALU::isValidInstruction(std::string instruction) {
 
     return true;
 }
-
 
 
 //    Arithmetic
