@@ -4,25 +4,39 @@
 #include <iostream>
 #include <bitset>
 
+// 1- Take numbers as Hex
+// 2- turn them into decimal for searching the memory
+// 3- and into binary for arithmetic operations
+// 4- convert binary to decimal after two's complement
+
+// Two's Complement
+// 5 -> 0000 0101, -2 -> 0000 0010 = 1111 1101 + 1 = 1111 1110
+// 0000 0101
+// 1111 1110 +
+// 1 0000 0011 =
+// if first bit = 0 -> convert to decimal normally,
+//      else if first bit = 1 -> apply two's complement and return (-) at the end
+
+// Floating Point Notation
+// 2.4 -> 10.0110 -> 1.00110 -> sign: 0, exp: 4, mantissa: 0011
+// 2.4 -> 0 100 0011
+
 class Register;
 
 class ALU {
 public:
 //    Hexadecimal
-    int hexToDec(const std::string &hex, bool isTwosComplement, bool isFloatNotation);
-
-    std::string decToHex(int dec, bool isTwosComplement, bool isFloatNotation);
+    int hexToDec(const std::string& hex);
+    std::bitset<8> hexToBin(const std::string& hex);
 
 //    Binary
-    int binToDec(const std::string &bin, bool isTwosComplement, bool isFloatNotation);
 
-    std::string decToBin(int dec, bool isTwosComplement, bool isFloatNotation);
 
 //    Validation
     bool isValidInstruction(std::string instruction);
 
+
 //    Arithmetic
-    std::string binaryAdd(std::string bin_1, std::string bin_2, bool isTwosComplement);
 };
 
 class CU {
