@@ -90,8 +90,9 @@ private:
             C_CU.load(regDecIndex, dataIndex, r);
         }
 
-//        } else if (operation == "3") {
-//
+        else if (operation == "3") {
+            C_CU.store(regDecIndex, memoDecIndex, r, mem);
+        }
 //        } else if (operation == "4") {
 //
 //        } else if (operation == "5") {
@@ -135,6 +136,9 @@ public:
             index += 2; 
         }
     }
+    void set_cell(string data, int address){
+        arr[address] = data;
+    }
 };
 
 class Register : public Memory
@@ -143,9 +147,9 @@ public:
     Register(){
         fill(begin(arr), begin(arr) + 16, "00");
     }
-    void set_cellreg( string s, int index){
-        arr[index] = s;
-    }
+    // void set_cellreg( string s, int index){
+    //     arr[index] = s;
+    // }
 };
 
 class Machine {

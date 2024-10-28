@@ -23,6 +23,9 @@ public:
             index += 2; 
         }
     }
+    void set_cell(string data, int address){
+        arr[address] = data;
+    }
 };
 
 class Register : public Memory
@@ -31,9 +34,9 @@ public:
     Register(){
         fill(begin(arr), begin(arr) + 16, "00");
     }
-    void set_cellreg( string s, int index){
-        arr[index] = s;
-    }
+    // void set_cellreg( string s, int index){
+    //     arr[index] = s;
+    // }
 };
 
 class Machine {
