@@ -1,52 +1,14 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <cmath>
+#include <bits/stdc++.h>
 
 //#include "course/complexNumber.h"
 //#include "course/stack.h"
-#include "op.cpp"
-#include "CPU.h"
+#include "memory.h"
+#include "Alu.h"
+#include "CU.h"
 
 using namespace std;
-//
-//class ALU {
-//public:
-//    double hexToDec(string hex) { // 5D
-//        double result = 0;
-//
-//        for (int i = 0; i < hex.size(); ++i) {
-//            char ch = hex[i];
-//
-//            if (ch >= '0' and ch <= '9') {
-//                result += (ch - '0') * pow(16, hex.size() - i - 1);
-//            } else if (ch >= 'A' and ch <= 'F') {
-//                result += (ch - 'A' + 10) * pow(16, hex.size() - i - 1);
-//            }
-//        }
-//
-//        return result;
-//    }
-//
-//    string decToHex(string dec) {
-//
-//    }
-//
-//    bool isValid(string operation) {
-//        string validOperations = "123456BC";
-//        return validOperations.find(operation) != string::npos;
-//    }
-//
-//    void add() {
-//
-//    }
-//};
-//
-//class CU {
-//
-//};
-//
+
+
 class CPU {
 private:
 //    Attributes
@@ -97,8 +59,8 @@ private:
             C_CU.store(regDecIndex, memoDecIndex, r, mem);
         }
         else if (operation == "4") {
-            regindex1 = C_ALU.hexToDec(instructionRegister[2]);
-            regindex2 = C_ALU.hexToDec(instructionRegister[3]);
+            regindex1 = C_ALU.hexToDecChar(instructionRegister[2]);
+            regindex2 = C_ALU.hexToDecChar(instructionRegister[3]);
             C_CU.move(regindex1, regindex2, r);
         } 
 //else if (operation == "5") {
@@ -121,42 +83,7 @@ private:
 //    }
 //};
 
-class Memory
-{
-protected:
-    int size = 256;
-    string arr[256];
-public:
-    Memory() {
-        fill(begin(arr), end(arr), "00");
-    }
-    string get_cell(int address){
-        return arr[address];
-    }
-    void set_cell(vector<string> &data){
-        int index = 0;
-        for (const string& str : data) {
-            int mid = str.length() / 2;
-            arr[index] = str.substr(0, mid);
-            arr[index + 1] = str.substr(mid, str.length() - mid);
-            index += 2; 
-        }
-    }
-    void set_cell(string data, int address){
-        arr[address] = data;
-    }
-};
 
-class Register : public Memory
-{
-public:
-    Register(){
-        fill(begin(arr), begin(arr) + 16, "00");
-    }
-    // void set_cellreg( string s, int index){
-    //     arr[index] = s;
-    // }
-};
 
 class Machine {
 private:

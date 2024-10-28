@@ -1,4 +1,4 @@
-#include "CPU.h"
+#include "ALU.h"
 
 double ALU::hexToDec(const std::string &hex) {
     double result = 0;
@@ -15,7 +15,7 @@ double ALU::hexToDec(const std::string &hex) {
 
     return result;
 }
-double ALU::hexToDec(const char &hex) {
+double ALU::hexToDecChar(const char &hex) {
     double result = 0;
 
         if (hex >= '0' && hex <= '9') {
