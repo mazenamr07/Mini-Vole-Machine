@@ -6,6 +6,7 @@
 
 //#include "course/complexNumber.h"
 //#include "course/stack.h"
+#include "op.cpp"
 #include "CPU.h"
 
 using namespace std;
@@ -46,42 +47,49 @@ using namespace std;
 //
 //};
 //
-//class CPU {
-//private:
-////    Attributes
-//    int programCounter = 0;
-//    string instructionRegister;
-//    string operation, registerIndex, dataIndex;
-//    ALU C_ALU;
-//    CU C_CU;
-//    // Reg, ALU, CU
-//
+class CPU {
+private:
+//    Attributes
+   int programCounter = 0;
+   string instructionRegister;
+   string operation, registerIndex, dataIndex;
+   ALU C_ALU;
+   CU C_CU;
+   Memory mem;
+   Register r;
+   int memoDecIndex, regDecIndex;
+   
+
 ////    Methods
-//    void fetch() {
-//        instructionRegister += "156C"; // mem[progCount, progCount+1]
-//        programCounter += 2;
-//    }
-//
-//    void decode() {
-//        // Operation
-//        operation += instructionRegister[0];
-//
-//        // Register Index
-//        registerIndex += instructionRegister[1];
-//
-//        // Data Index
-//        dataIndex += instructionRegister[2];
-//        dataIndex += instructionRegister[3];
-//
-//        // using ALU to turn hex "5C" to dec for index
-//        double dataDecIndex = C_ALU.hexToDec(dataIndex);
-//    }
-//
-//    void execute() {
-//        if (operation == "1") {
-////            registers[registerIndex] = Mem[dataIndex]
-//        } else if (operation == "2") {
-//
+   void fetch() {
+       instructionRegister += "156C"; // mem[progCount, progCount+1]
+       programCounter += 2;
+   }
+
+   void decode() {
+       // Operation
+       operation += instructionRegister[0];
+
+       // Register Index
+       registerIndex += instructionRegister[1];
+
+       // Data Index
+       dataIndex += instructionRegister[2];
+       dataIndex += instructionRegister[3];
+
+       // using ALU to turn hex "5C" to dec for index
+        regDecIndex = C_ALU.hexToDec(registerIndex);
+        memoDecIndex = C_ALU.hexToDec(dataIndex);
+   }
+
+   void execute() {
+        if (operation == "1") {
+            C_CU.load_content(regDecIndex, memoDecIndex, mem, r);
+        } 
+        else if (operation == "2") {
+            C_CU.load(regDecIndex, dataIndex, r);
+        }
+
 //        } else if (operation == "3") {
 //
 //        } else if (operation == "4") {
@@ -90,13 +98,15 @@ using namespace std;
 //
 //        } else if (operation == "6") {
 //
-//        } else if (operation == "B") {
-//
+       //} 
+        else if (operation == "B") {
+            C_CU.jump(regDecIndex, memoDecIndex, r, programCounter);
+        }
 //        } else if (operation == "C") {
 //
 //        }
-//    }
-//
+    }
+};
 //public:
 ////    Methods
 //    void runNextStep() {
@@ -184,8 +194,9 @@ public:
 };
 
 int main() {
-//    Machine test;
-//    test.loadData("../text-files/input-file.txt");
+    Machine test;
+    test.loadData("input-file.txt");
 //    test.printData();
 //    test.outputState();
+
 }

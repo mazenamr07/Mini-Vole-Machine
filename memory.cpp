@@ -61,11 +61,11 @@ public:
         }
         //mem1.set_cell(data);
         // cout << mem1.get_cell(0) << endl;
-        reg.set_cellreg("11" , 2);
-        cout << reg.get_cell(2);
+        // reg.set_cellreg("11" , 2);
+        // cout << reg.get_cell(2);
     }
 };
-int main(){
-    Machine test1; 
-    test1.getData("input-file.txt");
-}
+// int main(){
+//     Machine test1; 
+//     test1.getData("input-file.txt");
+// }
