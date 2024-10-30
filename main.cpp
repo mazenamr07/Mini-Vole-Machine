@@ -44,18 +44,18 @@ private:
 
    void execute() {
         if (operation == "1") {
-            regDecIndex = C_ALU.hexToDec(registerIndex);
-            memoDecIndex = C_ALU.hexToDec(dataIndex);
+            regDecIndex = C_ALU.hexToUnsignedDec(registerIndex);
+            memoDecIndex = C_ALU.hexToUnsignedDec(dataIndex);
             C_CU.load_content(regDecIndex, memoDecIndex, mem, r);
         } 
         else if (operation == "2") {
-            regDecIndex = C_ALU.hexToDec(registerIndex);
+            regDecIndex = C_ALU.hexToUnsignedDec(registerIndex);
             C_CU.load(regDecIndex, dataIndex, r);
         }
 
         else if (operation == "3") {
-            regDecIndex = C_ALU.hexToDec(registerIndex);
-            memoDecIndex = C_ALU.hexToDec(dataIndex);
+            regDecIndex = C_ALU.hexToUnsignedDec(registerIndex);
+            memoDecIndex = C_ALU.hexToUnsignedDec(dataIndex);
             C_CU.store(regDecIndex, memoDecIndex, r, mem);
         }
         else if (operation == "4") {
