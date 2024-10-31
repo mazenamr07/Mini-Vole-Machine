@@ -26,3 +26,15 @@ void CU::move(int registerindex1, int registerindex2, Register &reg){
     string content = reg.get_cell(registerindex1);
     reg.set_cell(content, registerindex2);
 }
+void CU::store_to_screen(int registerIndex, int memoryAddress, Register &reg, Memory &memo) {
+    // get the content of the specified register
+    string content = reg.get_cell(registerIndex);
+
+    // check if memory address is 0, representing the screen
+    if (memoryAddress == 0) {
+        cout << "output to screen: " << content << "\n";
+    } else {
+        // store the register content in the specified memory location
+        memo.set_cell(content, memoryAddress);
+    }
+}
